@@ -17,16 +17,18 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
-    <title>Login</title>
+    <title>Meshline Login</title>
 </head>
 
 <body>
-    <h1 id="Welcome"></h1>
-    <p class="lead">Pleas enter your phone number:</p>
-    <input id="phone_number" type="text" placeholder="Phone Number">
-    <button id="login_button" class="btn btn-primary">Submit</button>
-    <script>
+    <div class="container-fluid">
+        <h1 id="Welcome">Welcome to Meshline</h1>
+        <p class="lead">Please enter your phone number:</p>
+        <input id="phone_number" type="text" placeholder="Phone Number">
+        <button id="login_button" class="btn btn-primary">Submit</button>
+    </div>
 
+    <script>
         $("#login_button").click(function () {
             user = document.getElementById('phone_number').value;
             console.log(user);

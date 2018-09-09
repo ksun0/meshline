@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Disaster App | Communicating where people need help</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <link rel='shortcut icon' href='assets/favicon.ico' type='image/x-icon' />
+  <link rel="manifest" href="assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Communicating where people need help in the event of a natural disaster."/>
+
+
+  <!-- Google analytics tracking code-->
+  <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css" />
+<script type="text/javascript" charset="UTF-8" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+<script type="text/javascript" charset="UTF-8" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+<script type="text/javascript" charset="UTF-8" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+<script type="text/javascript" charset="UTF-8" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+  <link href="assets/main.css" rel="stylesheet" type="text/css" media="all">
+<script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.0.0/stitch.js"></script>
+  <script>
+
+
+    const client = stitch.Stitch.initializeDefaultAppClient("blogtutorial-xosgn");
+
+      // Get a MongoDB Service Client
+      const mongodb = client.getServiceClient(
+        stitch.RemoteMongoClient.factory,
+        "mongodb-atlas"
+        );
+
+      
+      // Get a reference to the blog database
+      const db = mongodb.db("pennapps");
+
+
+      function getValues() {
+
+          return client.callFunction("getXCoor");
+      }
+      var arr;
+      var vals = getValues().then(function(result) {
+         console.log(result);
+      });
+      console.log(arr);
+      </script>
+</head>
+<body>
+
+<!-- DO TEMPERATURES FOR EACH CITY. Other Features fuch as sentiment, all to determine where needs help. Icons for food, etc next. -->
+
+<div id="map-container" class="map"></div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <script src="assets/app.js"></script>
+  </body>
+  </html>

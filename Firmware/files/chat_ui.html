@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap.min.css" crossorigin="anonymous">
+
+    <script src="jquery-3.3.1.min.js" rossorigin="anonymous"></script>
+    <script src="bootstrap.min.js" crossorigin="anonymous"></script>
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1 id="welcome"></h1>
+        <p id="to_user"></p>
+        <div style="height: 50vh; overflow-y: scroll;"></div>
+        <input id="message_field" type="text" placeholder="Message">
+        <button id="submit_message" class="btn btn-primary">Submit</button>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary" id="update">Get Update</button>
+    </div>
+    <script>
+        function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        };
+
+        user = getUrlParameter("user");
+        to_user = getUrlParameter("to_user");
+
+        $(document).ready(function(){
+            $("#welcome").text("Hello, " + user + "!");
+            $("#to_user").text("You are connected to: " + to_user);
+        });
+
+        $("#update").click(function () {
+            $.get("http://192.168.203.1/state.json",
+                function (data, status) {
+                    console.log(data)
+                });
+        });
+
+        $("#submit_message").click(function () {
+            console.log("test");
+            message_val = document.getElementById('message_field').value;
+            var obj = new Object();
+            obj.key = user + " " + Math.floor(Date.now() / 1000) + " " + to_user;
+            obj.value = message_val;
+            var jsoned_message_val = JSON.stringify(obj);
+            console.log(jsoned_message_val)
+            $.ajax({
+                type: 'POST',
+                url: "http://192.168.203.1.com/send",
+                data: "key=" + obj.key + "&value=" + obj.value
+                // headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+        });
+
+    </script>
+
+</body>
+
+</html>

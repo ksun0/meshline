@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap.min.css" crossorigin="anonymous">
+
+    <script src="jquery-3.3.1.min.js" rossorigin="anonymous"></script>
+    <script src="bootstrap.min.js" crossorigin="anonymous"></script>
+
+    <title>Login</title>
+</head>
+
+<body>
+    <h1 id="welcome"></h1>
+    <div class="container-fluid">
+        <ul class="list-group" id="contacts">
+        </ul>
+    </div>
+    <script>
+        function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        };
+
+        user = getUrlParameter("user");
+
+        $(document).ready(function () {
+            $("#welcome").text("Hello, " + user + "!");
+            $.get("http://192.168.203.1/state.json",
+                function (data, status) {
+                    for (var key in data){
+                        var contact_user = document.createElement("li");
+                        contact_user.setAttribute("class", "list-group-item");
+                        contact_user.innerHTML = key;
+                        document.getElementById("contacts").appendChild(contact_user);
+                    }
+                });
+        });
+
+
+
+    </script>
+</body>

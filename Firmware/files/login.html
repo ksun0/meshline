@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="bootstrap.min.css" crossorigin="anonymous">
+
+    <script src="jquery-3.3.1.min.js" rossorigin="anonymous"></script>
+    <script src="bootstrap.min.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <h1 id="Welcome"></h1>
+    <p class="lead">Pleas enter your phone number:</p>
+    <input id="phone_number" type="text" placeholder="Phone Number">
+    <button id="login_button" class="btn btn-primary">Submit</button>
+    <script>
+
+        $("#login_button").click(function () {
+            user = document.getElementById('phone_number').value;
+            console.log(user);
+            location.href = "/contacts.html?user=" + user;
+        });
+    </script>
+</body>

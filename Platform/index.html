@@ -43,14 +43,17 @@
 
           return client.callFunction("getXCoor");
       }
-      var arr;
       var vals = getValues().then(function(result) {
          console.log(result);
       });
-      console.log(arr);
+
+      function authenticate() {
+        client.auth
+        .loginWithCredential(new stitch.AnonymousCredential())
+    }
       </script>
 </head>
-<body>
+<body onLoad="authenticate()">
 
 <!-- DO TEMPERATURES FOR EACH CITY. Other Features fuch as sentiment, all to determine where needs help. Icons for food, etc next. -->
 
